@@ -3,6 +3,7 @@ import { Container, Row, Col , Button, Form,Input,FormFeedback} from 'reactstrap
 import {connect} from 'react-redux';
 import StarRatings  from 'react-star-ratings'
 import {rating,clearerrors} from '../../actions/productActions';
+import classnames from 'classnames';
 class Rating extends Component {
     constructor(props) {
         super(props);
@@ -20,14 +21,24 @@ class Rating extends Component {
         const { id } = this.props;
         
         const { user } = this.props.user;
-        
-       const newrating={
-        Rating:this.state.rating,
-        name:user.fullName,
-        user:user.id
-       }
-       
-        this.props.rating(id,newrating);
+      
+        if(typeof (this.state.rating)==='undefined'){
+            const newrating={
+                Rating:0,
+                name:user.fullName,
+                user:user.id
+               }
+               
+                this.props.rating(id,newrating);
+        }else{
+            const newrating={
+                Rating:this.state.rating,
+                name:user.fullName,
+                user:user.id
+               }
+                this.props.rating(id,newrating);
+        }
+     
       this.setState({
           errors:{}
       })
@@ -73,8 +84,11 @@ class Rating extends Component {
           numberOfStars={5}
           name='rating'
           starDimension="30px"
+    
          
-        /></Col>
+        />
+        
+        </Col>
         <Col sm={6}><Button>Post</Button></Col>
            </Row>
            </Form>

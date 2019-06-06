@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { Button, Nav,NavItem } from 'reactstrap';
-
+import {  Nav } from 'reactstrap';
+import {Link} from 'react-router-dom';
 
 class cart extends Component {
     render() {
         return (
         
-            <Nav className="m-auto" navbar>
-            <NavItem>
-            <Button outline color="secondary">Cart({ (this.props.cartItemsNumber > 0)?(this.props.cartItemsNumber):(0)})</Button>{' '}
-
+            <Nav className="ml-6" navbar>
+         
+            <Link to="/Cart"  className="btn btn-outline-secondary">
+            Cart({ (this.props.cartItemsNumber > 0)?(this.props.cartItemsNumber):(0)})
+            </Link>
           
-            </NavItem>
+            
             
             
           </Nav>

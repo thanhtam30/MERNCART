@@ -3,13 +3,14 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux'
 import {logoutUser} from '../../actions/userActions';
 import {getCart} from '../../actions/cartActions';
+
 import {
   Collapse,
   Navbar,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink } from 'reactstrap';
+  ButtonGroup } from 'reactstrap';
 import Cart from './cart'
 import Search from './search';
 class header extends Component {
@@ -25,17 +26,21 @@ class header extends Component {
       const usermenu=(
         <Nav className="ml-auto" navbar>
            
-         
-           <Cart cartItemsNumber={this.props.totalQty}/>
+         <ButtonGroup>
+         <Cart cartItemsNumber={this.props.totalQty}/>
            <NavItem>
-          <NavLink href="/Signin">SignIn</NavLink>
+           <Link to="/Signin" className='btn btn-link'><i class="fa fa-user-plus"></i></Link>
         </NavItem>
         <NavItem>
-          <NavLink href="/Login">Login</NavLink>
+          <Link  to="/Login" className='btn btn-link'><i class="fa fa-sign-in"></i>
+
+</Link>
         </NavItem>
         <NavItem>
        
         </NavItem>
+         </ButtonGroup>
+         
         
       </Nav>
        
@@ -44,7 +49,7 @@ class header extends Component {
         <Nav className="ml-auto" navbar>
        <Cart cartItemsNumber={this.props.totalQty}/>
         <NavItem>
-          <NavLink href="/Login" onClick={this.onLogout.bind(this)}>({user.fullName}) Logout</NavLink>
+          <Link className='btn btn-link'  to="/Login" onClick={this.onLogout.bind(this)}>({user.fullName}) Logout</Link>
         </NavItem>
       
         
@@ -52,7 +57,7 @@ class header extends Component {
         
       )
         return (
-          <Navbar color="light" light  expand="md">
+          <Navbar  style={{background:'#e3f2fd'}}  expand="md">
           <NavbarBrand href="/">Home</NavbarBrand>
           
           <Collapse  navbar>
